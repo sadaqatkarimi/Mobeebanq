@@ -31,6 +31,15 @@ dependencies:
   dots_indicator: any
   country_list_pick: any
   pin_code_fields: any
+  permission_handler: ^5.0.1+1
+  fl_chart: any
+  signature: any
+  google_maps_flutter: any
+  font_awesome_flutter: any
+  camera: any
+  path_provider:
+  path:
+
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +59,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/.
+    - icons/.
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

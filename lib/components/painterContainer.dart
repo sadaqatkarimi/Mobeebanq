@@ -120,3 +120,30 @@ class AdvanceCustomAlert extends StatelessWidget {
     );
   }
 }
+
+
+
+class HolePainter extends CustomPainter {
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+    paint.color = Colors.blue;
+    canvas.drawPath(
+      Path.combine(
+        PathOperation.difference,
+        Path()..addRRect(RRect.fromLTRBR(100, 100, 300, 300, Radius.circular(10))),
+        Path()
+          ..addOval(Rect.fromCircle(center: Offset(200, 200), radius: 50))
+          ..close(),
+      ),
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return null;
+  }
+
+}

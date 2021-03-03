@@ -21,6 +21,15 @@ class CustomTextStyle {
         fontWeight: FontWeight.w600);
   }
 
+  static TextStyle payments(BuildContext context) {
+    return TextStyle(
+        color: Colors.white,
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        fontFamily: "montserrat"
+    );
+  }
+
 }
 
 

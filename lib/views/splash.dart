@@ -15,7 +15,7 @@ class _splashScreenState extends State<splashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 2), () => Navigator.pushNamed(context, "/walkthrough"));
+    Timer(Duration(seconds: 3), () => Navigator.pushNamed(context, "/walkthrough"));
   }
 
   @override

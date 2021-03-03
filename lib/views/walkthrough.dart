@@ -64,7 +64,7 @@ class WalkThroughState extends State<WalkThrough> {
             children: <Widget>[
               // SizedBox(height: 10,),
               Expanded(
-                flex: 4,
+                flex: 5,
                 child: PageView(
                   children: <Widget>[
                     myWalkthrough(

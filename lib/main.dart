@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobeebanq/views/OTP.dart';
+import 'package:mobeebanq/views/paymentHistory.dart';
 import 'package:mobeebanq/views/phoneVerification.dart';
 import 'package:mobeebanq/views/splash.dart';
 import 'package:mobeebanq/views/walkthrough.dart';
