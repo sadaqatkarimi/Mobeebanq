@@ -41,15 +41,13 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       actions: <Widget>[
         Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: EdgeInsets.only(right: 10.0),
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (Context) => selectOption()));
               },
-              child: Icon(
-                  Icons.menu_outlined
-              ),
+              child: Image.asset("icons/menu.png")
             )
         ),
       ],

@@ -61,35 +61,38 @@ class _phoneVerificationState extends State<phoneVerification> {
             ),
           ),
 
-          Positioned(
+          Positioned.fill(
             bottom: 90,
-            right: 150,
-            child: Container(
-              width: 60.0,
-              height: 60.0,
-              // decoration: new BoxDecoration(
-              //   color: basicColor,
-              //   borderRadius: new BorderRadius.all(new Radius.circular(50.0)),
-              //   border: new Border.all(
-              //     color: Colors.white.withOpacity(0.9),
-              //     width: 5.0,
-              //   ),
-              // ),
-              child: RaisedButton(
-                  onPressed: (){
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (Context) => otpScreen()));
-                  },
-                  color: basicColor,
-                  elevation: 0,
-                  focusColor: basicColor,
+            // right: 150,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: 60.0,
+                height: 60.0,
+                // decoration: new BoxDecoration(
+                //   color: basicColor,
+                //   borderRadius: new BorderRadius.all(new Radius.circular(50.0)),
+                //   border: new Border.all(
+                //     color: Colors.white.withOpacity(0.9),
+                //     width: 5.0,
+                //   ),
+                // ),
+                child: RaisedButton(
+                    onPressed: (){
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (Context) => otpScreen()));
+                    },
+                    color: basicColor,
+                    elevation: 0,
+                    focusColor: basicColor,
 
-                  shape: RoundedRectangleBorder(
+                    shape: RoundedRectangleBorder(
 
-                    borderRadius: BorderRadius.circular(50.0),
-                    side: BorderSide(color: Colors.white.withOpacity(0.9), width: 5),
-                  ),
-                  child: Icon(Icons.arrow_forward,color: Colors.white,)),
+                      borderRadius: BorderRadius.circular(50.0),
+                      side: BorderSide(color: Colors.white.withOpacity(0.9), width: 5),
+                    ),
+                    child: Icon(Icons.arrow_forward,color: Colors.white,)),
+              ),
             ),
           ),
 

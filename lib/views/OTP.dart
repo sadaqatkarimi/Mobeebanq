@@ -43,6 +43,7 @@ class _otpScreenState extends State<otpScreen> {
         children: [
 
 
+          SizedBox(height: 20,),
 
 
           Expanded(
@@ -53,7 +54,7 @@ class _otpScreenState extends State<otpScreen> {
               direction: Axis.vertical,
               children: [
                 Image(
-                image: AssetImage("images/smsVerification.png"),
+                image: AssetImage("images/otp.png"),
                 width:  MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height/5,
                 ),

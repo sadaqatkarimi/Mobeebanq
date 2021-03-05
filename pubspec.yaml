@@ -36,10 +36,8 @@ dependencies:
   signature: any
   google_maps_flutter: any
   font_awesome_flutter: any
-  camera: any
-  path_provider:
-  path:
-
+  image_picker: any
+  percent_indicator: any
 
 dev_dependencies:
   flutter_test:

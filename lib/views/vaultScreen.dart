@@ -3,6 +3,7 @@ import 'package:mobeebanq/components/appBar.dart';
 import 'package:mobeebanq/components/customSwitch.dart';
 import 'package:mobeebanq/components/painterContainer.dart';
 import 'package:mobeebanq/constants.dart';
+import 'package:mobeebanq/views/IdCardScan.dart';
 import 'package:mobeebanq/views/portraitPhoto.dart';
 
 class vaultScreen extends StatefulWidget {
@@ -34,7 +35,7 @@ class _vaultScreenState extends State<vaultScreen> {
 
 
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +69,7 @@ class _vaultScreenState extends State<vaultScreen> {
                           radius: 15,
                           backgroundColor: Color(0xff213C77),
                           child: status == false
-                          ? Icon(Icons.lock_open,size: 16,color: Color(0xff38E4AA),)
+                          ? Image.asset("icons/unlock.png",height: 12,fit: BoxFit.cover,)
                           : Icon(Icons.lock,size: 16,),
                         ),
                       ),
@@ -147,7 +148,7 @@ class _vaultScreenState extends State<vaultScreen> {
                             {
                               Future.delayed(Duration(seconds: 2),(){
                                 Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (Context) => FacePage()));
+                                    MaterialPageRoute(builder: (Context) => IdCadScan()));
                               });
                             }
 

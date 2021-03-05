@@ -172,8 +172,8 @@ class myCircleMenuState extends State<myCircleMenu>
 
           // FAB
           Positioned(
-            right: -20,
-            bottom: -10,
+            right: -25,
+            bottom: -15,
             child: Container(
               width: widget.fabSize,
               height: widget.fabSize,

@@ -63,7 +63,7 @@ class _paymentHistoryState extends State<paymentHistory> {
             ringColor: yelowColor,
             ringDiameter: 350.0,
             ringWidth: 130.0,
-            fabSize: 130.0,
+            fabSize: 150.0,
             fabElevation: 120.0,
             fabIconBorder: CircleBorder(),
             // Also can use specific color based on wether
@@ -121,7 +121,7 @@ class _paymentHistoryState extends State<paymentHistory> {
       ),
     );
   }
-
+  //
   // void _showSnackBar(BuildContext context, String message) {
   //   Scaffold.of(context).showSnackBar(
   //       SnackBar(

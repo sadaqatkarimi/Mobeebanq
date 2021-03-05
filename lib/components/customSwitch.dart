@@ -70,51 +70,47 @@ class _CustomSwitchState extends State<CustomSwitch>
                   color: _circleAnimation.value == Alignment.centerLeft
                       ? widget.unactiveColor
                       : widget.activeColor),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 0.0, bottom: 0.0, right: 0.0, left: 0.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    _circleAnimation.value == Alignment.centerRight
-                        ? Padding(
-                      padding: const EdgeInsets.only(left: 18.0, right: 4.0),
-                      child: Transform.rotate(
-                          angle: pi*18/12,
-                          child: Icon(Icons.lock_rounded,color: Colors.white,))
-                    )
-                        : Container(),
-                    Align(
-                      alignment: _circleAnimation.value,
-                      child: Transform.rotate(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  _circleAnimation.value == Alignment.centerRight
+                      ? Padding(
+                    padding: const EdgeInsets.only(left: 18.0, right: 4.0),
+                    child: Transform.rotate(
                         angle: pi*18/12,
-                        child: Container(
-                          width: 60.0,
-                          height: 80.0,
-                          decoration: BoxDecoration(
-                            // color: Colors.red,
-                            image: DecorationImage(
-                              image: _circleAnimation.value == Alignment.centerLeft
-                                ? AssetImage("images/switchOn.png")
-                                : AssetImage("images/switchOff.png"),
-                              // fit: BoxFit.fill,
-                              scale: 1
-                            ),
-                              // shape: BoxShape.circle, color: Colors.white
+                        child: Icon(Icons.lock_rounded,color: Colors.white,))
+                  )
+                      : Container(),
+                  Align(
+                    alignment: _circleAnimation.value,
+                    child: Transform.rotate(
+                      angle: pi*18/12,
+                      child: Container(
+                        width: 60.0,
+                        height: 80.0,
+                        decoration: BoxDecoration(
+                          // color: Colors.red,
+                          image: DecorationImage(
+                            image: _circleAnimation.value == Alignment.centerLeft
+                              ? AssetImage("images/switchOn.png")
+                              : AssetImage("images/switchOff.png"),
+                            // fit: BoxFit.fill,
+                            scale: 1
                           ),
+                            // shape: BoxShape.circle, color: Colors.white
                         ),
                       ),
                     ),
-                    _circleAnimation.value == Alignment.centerLeft
-                        ? Padding(
-                      padding: const EdgeInsets.only(left: 4.0, right: 18.0),
-                      child: Transform.rotate(
-                          angle: pi*18/12,
-                          child: Icon(Icons.lock_open,color: Color(0xff38E4AA),)),
-                    )
-                        : Container(),
-                  ],
-                ),
+                  ),
+                  _circleAnimation.value == Alignment.centerLeft
+                      ? Padding(
+                    padding: const EdgeInsets.only(left: 4.0, right: 18.0),
+                    child: Transform.rotate(
+                        angle: pi*18/12,
+                        child: Image.asset("icons/unlock.png",height: 20,fit: BoxFit.cover,)),
+                  )
+                      : Container(),
+                ],
               ),
             ),
           );

@@ -2,6 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobeebanq/components/customButtons.dart';
+import 'package:mobeebanq/constants.dart';
+import 'package:mobeebanq/components/search_bar.dart';
+
 
 class mapView extends StatefulWidget {
   @override
@@ -19,26 +23,27 @@ class mapViewState extends State<mapView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // leading: IconButton(
-        //     icon: Icon(FontAwesomeIcons.arrowLeft),
-        //     onPressed: () {
-        //       //
-        //     }),
-        title: Text("New York"),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(FontAwesomeIcons.search),
-              onPressed: () {
-                //
-              }),
-        ],
-      ),
+      resizeToAvoidBottomPadding: false,
+      // appBar: AppBar(
+      //   // leading: IconButton(
+      //   //     icon: Icon(FontAwesomeIcons.arrowLeft),
+      //   //     onPressed: () {
+      //   //       //
+      //   //     }),
+      //   title: Text("New York"),
+      //   actions: <Widget>[
+      //     IconButton(
+      //         icon: Icon(FontAwesomeIcons.search),
+      //         onPressed: () {
+      //           //
+      //         }),
+      //   ],
+      // ),
       body: Stack(
         children: <Widget>[
+
           _buildGoogleMap(context),
-          // _zoomminusfunction(),
-          // _zoomplusfunction(),
+          _headerContainer(),
           _buildContainer(),
         ],
       ),
@@ -85,8 +90,8 @@ class mapViewState extends State<mapView> {
       alignment: Alignment.bottomLeft,
       child: Container(
         // color: Colors.red,
-        margin: EdgeInsets.symmetric(vertical: 20.0),
-        height: 220.0,
+        margin: EdgeInsets.symmetric(vertical: 10.0),
+        height: 240.0,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
@@ -172,6 +177,44 @@ class mapViewState extends State<mapView> {
     );
   }
 
+
+  Widget _headerContainer() {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Container(
+        // color: Colors.red,
+        margin: EdgeInsets.symmetric(vertical: 20.0),
+        // height: 220.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+
+            mapButton(
+              iconss: Icon(Icons.arrow_back,color: basicColor),
+              colorss: Colors.black,
+              // focusColor: Colors.white,
+              // disbaleColor: Colors.white,
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+            // SizedBox(width: 10.0),
+            searchBar(),
+            mapButton1(
+                iconss: Image.asset("icons/menu.png",color: basicColor,),
+                colorss: Colors.black,
+                // focusColor: Colors.white,
+                // disbaleColor: Colors.white,
+                onPressed: () {
+                  // Navigator.pop(context);
+                }),
+
+
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _boxes(String _image, double lat,double long,String restaurantName) {
     return  GestureDetector(
       onTap: () {
@@ -191,7 +234,7 @@ class mapViewState extends State<mapView> {
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width/1.6,
-                        height: MediaQuery.of(context).size.height/5,
+                        height: MediaQuery.of(context).size.height/4.5,
                         // color: Colors.yellow,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -240,12 +283,15 @@ class mapViewState extends State<mapView> {
           ),
         ),
         SizedBox(height: 10,),
-        Text(restaurantName,
-          style: TextStyle(
-              color: Color(0xff6200ee),
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold),
-          textAlign: TextAlign.start,
+        Padding(
+          padding: const EdgeInsets.only(left:6.0),
+          child: Text(restaurantName,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold),
+            textAlign: TextAlign.start,
+          ),
         ),
 
         // Container(
@@ -313,14 +359,16 @@ class mapViewState extends State<mapView> {
         //         fontSize: 18.0,
         //       ),
         //     )),
-        Container(
-            child: Text(
-              "Lorem ipsum dolor sit consetetur sadipscing elitr, sed more find we",
-              style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.bold),
-            )),
+        Padding(
+          padding: const EdgeInsets.only(left:6.0),
+          child: Text(
+            "Lorem ipsum dolor sit consetetur sadipscing elitr, sed more find we are very happy",
+            style: TextStyle(
+                color: Colors.black54,
+                fontSize: 12.0,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
       ],
     );
   }
