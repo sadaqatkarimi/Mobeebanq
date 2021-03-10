@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mobeebanq/views/OTP.dart';
-import 'package:mobeebanq/views/paymentHistory.dart';
 import 'package:mobeebanq/views/phoneVerification.dart';
 import 'package:mobeebanq/views/splash.dart';
 import 'package:mobeebanq/views/walkthrough.dart';
-
 import 'constants.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -14,9 +12,6 @@ void main() {
 var routes = <String, WidgetBuilder>{
   "/walkthrough": (BuildContext context) => WalkThrough(),
   "/phoneVerify": (BuildContext context) => phoneVerification(),
-  // "/otpScreen": (BuildContext context) => otpScreen(),
-
-
 };
 
 class MyApp extends StatelessWidget {

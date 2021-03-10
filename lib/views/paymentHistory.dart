@@ -61,9 +61,10 @@ class _paymentHistoryState extends State<paymentHistory> {
             // Cannot be `Alignment.center`
             alignment: Alignment.bottomRight,
             ringColor: yelowColor,
-            ringDiameter: 350.0,
-            ringWidth: 130.0,
-            fabSize: 150.0,
+            ringDiameter: 450.0,
+
+            ringWidth: 180.0,
+            fabSize: 130.0,
             fabElevation: 120.0,
             fabIconBorder: CircleBorder(),
             // Also can use specific color based on wether
@@ -80,6 +81,7 @@ class _paymentHistoryState extends State<paymentHistory> {
             animationDuration: const Duration(milliseconds: 800),
             animationCurve: Curves.easeInOutCirc,
             onDisplayChange: (isOpen) {
+
               // _showSnackBar(context, "The menu is ${isOpen ? "open" : "closed"}");
             },
             children: <Widget>[
@@ -97,8 +99,6 @@ class _paymentHistoryState extends State<paymentHistory> {
                 child: Image(image: AssetImage("icons/meter.png"),),
               ),
 
-
-
               RawMaterialButton(
                 onPressed: () {
                   // _showSnackBar(context, "You pressed 2");
@@ -107,6 +107,7 @@ class _paymentHistoryState extends State<paymentHistory> {
                 padding: const EdgeInsets.all(24.0),
                 child: Image(image: AssetImage("icons/calender.png"),),
               ),
+
               RawMaterialButton(
                 onPressed: () {
                   // _showSnackBar(context, "You pressed 3");
@@ -115,6 +116,7 @@ class _paymentHistoryState extends State<paymentHistory> {
                 padding: const EdgeInsets.all(24.0),
                 child: Image(image: AssetImage("icons/profile.png"),),
               ),
+
             ],
           ),
         ),

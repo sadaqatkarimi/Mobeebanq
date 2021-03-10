@@ -38,6 +38,7 @@ dependencies:
   font_awesome_flutter: any
   image_picker: any
   percent_indicator: any
+  flutter_spinning_wheel: any
 
 dev_dependencies:
   flutter_test:
