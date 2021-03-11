@@ -300,7 +300,7 @@ class myCircleMenuState extends State<myCircleMenu>
   }
 
   void open() {
-    // _isAnimating = true;
+    _isAnimating = true;
     _animationController.forward().then((_) {
       _isAnimating = false;
       _isOpen = true;
