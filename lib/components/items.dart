@@ -7,11 +7,11 @@ import 'package:mobeebanq/constants.dart';
 import 'myCircleMenu.dart';
 
 class ArcItem {
-  IconData icons;
+  IconData text;
   List<Color> colors;
   double startAngle;
 
-  ArcItem(this.icons, this.colors, this.startAngle);
+  ArcItem(this.text, this.colors, this.startAngle);
 }
 
 
@@ -106,23 +106,23 @@ class ChooserPainter extends CustomPainter {
               colors: arcItems[i].colors,
             ).createShader(dummyRect));
 
-      // final icon = arcItems[i].icons;
-      // TextPainter textPainter = TextPainter(textDirection: TextDirection.rtl);
-      // textPainter.text = TextSpan(text: String.fromCharCode(icon.codePoint),
-      //     style: TextStyle(fontSize: 40.0,));
-      // textPainter.layout();
+      final icon = arcItems[i].text;
+      TextPainter textPainter = TextPainter(textDirection: TextDirection.rtl);
+      textPainter.text = TextSpan(text: String.fromCharCode(icon.codePoint),
+          style: TextStyle(fontSize: 40.0,));
+      textPainter.layout();
       // textPainter.paint(canvas, Offset(50.0,50.0));
 
       // Draw text
-      IconData span = new IconData(icon: arcItems[i].icons);
-      TextPainter tp = new TextPainter(text: span, textAlign: TextAlign.center, textDirection: TextDirection.ltr,);
-      tp.layout();
-      tp.paint(canvas, Offset(50,50));
+      // TextSpan span = new TextSpan(text: String.fromCharCode(icon.codePoint));
+      // TextPainter tp = new TextPainter(text: span, textAlign: TextAlign.center, textDirection: TextDirection.ltr,);
+      // tp.layout();
+      // tp.paint(canvas, Offset(50,50));
 
 //
 
       //find additional angle to make text in center
-      double f = tp.width/2;
+      double f = textPainter.width/2;
       double t = sqrt((radiusText*radiusText) + (f*f));
 
       double additionalAngle = acos(((t*t) + (radiusText*radiusText)-(f*f))/(2*t*radiusText));
@@ -134,7 +134,7 @@ class ChooserPainter extends CustomPainter {
       canvas.translate(tX,tY);
 //      canvas.rotate(arcItems[i].startAngle + angleInRadiansByTwo);
       canvas.rotate(arcItems[i].startAngle+angleInRadians+angleInRadians+angleInRadiansByTwo);
-      tp.paint(canvas, new Offset(0.0,-60.3));
+      textPainter.paint(canvas, new Offset(0.0,-60.3));
       canvas.restore();
 
 //

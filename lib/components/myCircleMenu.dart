@@ -300,7 +300,7 @@ class myCircleMenuState extends State<myCircleMenu>
   }
 
   void open() {
-    _isAnimating = true;
+    // _isAnimating = true;
     _animationController.forward().then((_) {
       _isAnimating = false;
       _isOpen = true;
@@ -404,7 +404,6 @@ class ChooserState extends State<ArcChooser> with SingleTickerProviderStateMixin
   @override
   void initState() {
     arcItems = List<ArcItem>();
-
 
 
     arcItems.add(ArcItem(Icons.ac_unit, [Color(0xFFF9D976), Color(0xfff39f86)],
