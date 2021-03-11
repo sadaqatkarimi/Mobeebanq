@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 
+import '../constants.dart';
 import 'items.dart';
 
 typedef DisplayChange = void Function(bool isOpen);
@@ -406,21 +407,21 @@ class ChooserState extends State<ArcChooser> with SingleTickerProviderStateMixin
     arcItems = List<ArcItem>();
 
 
-    arcItems.add(ArcItem(Icons.ac_unit, [Color(0xFFF9D976), Color(0xfff39f86)],
+    arcItems.add(ArcItem(Icons.ac_unit, [basicColor,basicColor],
         angleInRadiansByTwo + userAngle));
-    arcItems.add(ArcItem(Icons.airline_seat_individual_suite_sharp, [Color(0xFF21e1fa), Color(0xff3bb8fd)],
+    arcItems.add(ArcItem(Icons.airline_seat_individual_suite_sharp, [yelowColor,yelowColor],
         angleInRadiansByTwo + userAngle + (angleInRadians)));
-    arcItems.add(ArcItem(Icons.bathtub_sharp, [Color(0xFF3ee98a), Color(0xFF41f7c7)],
+    arcItems.add(ArcItem(Icons.bathtub_sharp, [basicColor,basicColor],
         angleInRadiansByTwo + userAngle + (2 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.accessible_forward_sharp, [Color(0xFFfe0944), Color(0xFFfeae96)],
+    arcItems.add(ArcItem(Icons.accessible_forward_sharp, [yelowColor,yelowColor],
         angleInRadiansByTwo + userAngle + (3 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.ac_unit, [Color(0xFFF9D976), Color(0xfff39f86)],
+    arcItems.add(ArcItem(Icons.ac_unit, [basicColor,basicColor],
         angleInRadiansByTwo + userAngle + (4 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.ac_unit, [Color(0xFF21e1fa), Color(0xff3bb8fd)],
+    arcItems.add(ArcItem(Icons.ac_unit, [yelowColor,yelowColor],
         angleInRadiansByTwo + userAngle + (5 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.ac_unit, [Color(0xFF3ee98a), Color(0xFF41f7c7)],
+    arcItems.add(ArcItem(Icons.ac_unit, [basicColor,basicColor],
         angleInRadiansByTwo + userAngle + (6 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.ac_unit, [Color(0xFFfe0944), Color(0xFFfeae96)],
+    arcItems.add(ArcItem(Icons.ac_unit, [yelowColor,yelowColor],
         angleInRadiansByTwo + userAngle + (7 * angleInRadians)));
 
 

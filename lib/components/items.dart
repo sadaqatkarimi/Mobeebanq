@@ -1,10 +1,9 @@
 import 'dart:math';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:mobeebanq/constants.dart';
-
 import 'myCircleMenu.dart';
+
 
 class ArcItem {
   IconData text;
@@ -126,17 +125,14 @@ class ChooserPainter extends CustomPainter {
       double t = sqrt((radiusText*radiusText) + (f*f));
 
       double additionalAngle = acos(((t*t) + (radiusText*radiusText)-(f*f))/(2*t*radiusText));
-
       double tX = center.dx + radiusText*cos(arcItems[i].startAngle+angleInRadiansByTwo - additionalAngle);// - (tp.width/2);
       double tY = center.dy + radiusText*sin(arcItems[i].startAngle+angleInRadiansByTwo - additionalAngle);// - (tp.height/2);
-
       canvas.save();
       canvas.translate(tX,tY);
 //      canvas.rotate(arcItems[i].startAngle + angleInRadiansByTwo);
       canvas.rotate(arcItems[i].startAngle+angleInRadians+angleInRadians+angleInRadiansByTwo);
-      textPainter.paint(canvas, new Offset(0.0,-60.3));
+      textPainter.paint(canvas, new Offset(0.0,-80.3));
       canvas.restore();
-
 //
     }
 
