@@ -4,7 +4,6 @@ import 'package:mobeebanq/views/splash.dart';
 import 'package:mobeebanq/views/walkthrough.dart';
 import 'constants.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -23,7 +22,8 @@ class MyApp extends StatelessWidget {
       title: 'Mobeebanq',
       theme: ThemeData(
         fontFamily: "montserrat",
-        appBarTheme: AppBarTheme(color: basicColor,centerTitle: true,elevation: 0),
+        appBarTheme:
+            AppBarTheme(color: basicColor, centerTitle: true, elevation: 0),
         backgroundColor: Colors.white,
         primaryColor: basicColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -33,4 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

@@ -15,27 +15,18 @@ import 'package:mobeebanq/views/SummeryDetailsWithSignature.dart';
 import 'OTP.dart';
 
 class DetailsSummary extends StatefulWidget {
-
   final File myimage;
 
   DetailsSummary({Key key, @required this.myimage}) : super(key: key);
-
-
-
 
   @override
   _DetailsSummaryState createState() => _DetailsSummaryState();
 }
 
 class _DetailsSummaryState extends State<DetailsSummary> {
-
-
-
-
   Uint8List mysignat;
 
   final SignatureController _controller = SignatureController(
-
     penStrokeWidth: 1,
     penColor: basicColor,
     exportBackgroundColor: Colors.transparent,
@@ -45,7 +36,6 @@ class _DetailsSummaryState extends State<DetailsSummary> {
     super.initState();
     _controller.addListener(() => print('Value changed'));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -120,72 +110,71 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   mysignat != null
-                  ? Container(
-                    width: MediaQuery.of(context).size.width/1.2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "My Signature",
-                          style: TextStyle(
-                              color: basicColor,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold
+                      ? Container(
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "My Signature",
+                                style: TextStyle(
+                                    color: basicColor,
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    opensheet();
+                                  });
+                                },
+                                child: Text(
+                                  "Redraw",
+                                  style: TextStyle(
+                                      color: basicColor,
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
                           ),
+                        )
+                      : Container(),
+                  SizedBox(
+                    height: height / 50,
+                  ),
+                  mysignat == null
+                      ? Container()
+                      : Image.memory(
+                          mysignat,
+                          // color: Color.red,
+                          // color: Colors.grey,
+                          width: 120,
+                          height: 100,
+                          fit: BoxFit.fill,
+                          scale: 2,
                         ),
-                        InkWell(
-                          onTap: (){
+                  SizedBox(
+                    height: height / 50,
+                  ),
+                  mysignat == null
+                      ? customButton(
+                          text: Text(
+                            "Add Signature ",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: height / 50),
+                            // style: CustomTextStyle.buttontitle(context),
+                          ),
+                          onPressed: () {
                             setState(() {
                               opensheet();
                             });
                           },
-                          child: Text(
-                            "Redraw",
-                            style: TextStyle(
-                                color: basicColor,
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                  : Container(),
-
-                  SizedBox(
-                    height: height / 50,
-                  ),
-                  mysignat == null
-                  ? Container()
-                  : Image.memory(
-                    mysignat,
-                  // color: Color.red,
-                  // color: Colors.grey,
-                  width: 120,
-                  height: 100,
-                  fit: BoxFit.fill,
-                  scale: 2,),
-                  SizedBox(
-                    height: height / 50,
-                  ),
-
-                  mysignat == null
-                      ? customButton(
-                    text: Text(
-                      "Add Signature ",
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: height/50),
-                      // style: CustomTextStyle.buttontitle(context),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        opensheet();
-                      });
-                    },
-                    colors: basicColor,
-                  )
-                  : Container(),
-
+                          colors: basicColor,
+                        )
+                      : Container(),
                   SizedBox(
                     height: height / 10,
                   ),
@@ -226,7 +215,7 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                                   fit: BoxFit.cover,
                                   image: FileImage(widget.myimage)),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(8.0)),
+                                  BorderRadius.all(Radius.circular(8.0)),
                               color: Colors.grey.withOpacity(0.2),
                             ),
                           ),
@@ -246,7 +235,6 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                               child: Row(
                                 // direction: Axis.horizontal,
                                 children: [
-
                                   Wrap(
                                     direction: Axis.vertical,
                                     spacing: 10,
@@ -254,8 +242,8 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                                       Text(
                                         'First Name:',
                                         style: TextStyle(
-                                          // wordSpacing: 1,
-                                          // letterSpacing: 1,
+                                            // wordSpacing: 1,
+                                            // letterSpacing: 1,
                                             color: Color(0xff6F7071),
                                             fontSize: height / 60,
                                             fontWeight: FontWeight.w600),
@@ -263,8 +251,8 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                                       Text(
                                         'Name:',
                                         style: TextStyle(
-                                          // wordSpacing: 1,
-                                          // letterSpacing: 1,
+                                            // wordSpacing: 1,
+                                            // letterSpacing: 1,
                                             color: Color(0xff6F7071),
                                             fontSize: height / 60,
                                             fontWeight: FontWeight.w600),
@@ -272,8 +260,8 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                                       Text(
                                         'Birth date:',
                                         style: TextStyle(
-                                          // wordSpacing: 1,
-                                          // letterSpacing: 1,
+                                            // wordSpacing: 1,
+                                            // letterSpacing: 1,
                                             color: Color(0xff6F7071),
                                             fontSize: height / 60,
                                             fontWeight: FontWeight.w600),
@@ -281,8 +269,8 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                                       Text(
                                         'Birth Place:',
                                         style: TextStyle(
-                                          // wordSpacing: 1,
-                                          // letterSpacing: 1,
+                                            // wordSpacing: 1,
+                                            // letterSpacing: 1,
                                             color: Color(0xff6F7071),
                                             fontSize: height / 60,
                                             fontWeight: FontWeight.w600),
@@ -290,8 +278,8 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                                       Text(
                                         'ID card insurance date ',
                                         style: TextStyle(
-                                          // wordSpacing: 1,
-                                          // letterSpacing: 1,
+                                            // wordSpacing: 1,
+                                            // letterSpacing: 1,
                                             color: Color(0xff6F7071),
                                             fontSize: height / 60,
                                             fontWeight: FontWeight.w600),
@@ -299,8 +287,8 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                                       Text(
                                         'ID card Number:',
                                         style: TextStyle(
-                                          // wordSpacing: 1,
-                                          // letterSpacing: 1,
+                                            // wordSpacing: 1,
+                                            // letterSpacing: 1,
                                             color: Color(0xff6F7071),
                                             fontSize: height / 60,
                                             fontWeight: FontWeight.w600),
@@ -312,7 +300,8 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                                   ),
                                   Wrap(
                                     direction: Axis.vertical,
-                                    crossAxisAlignment: WrapCrossAlignment.start,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.start,
                                     alignment: WrapAlignment.start,
                                     runAlignment: WrapAlignment.start,
                                     spacing: 10,
@@ -379,8 +368,6 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                                       ),
                                     ],
                                   ),
-
-
                                 ],
                               ),
                             ),
@@ -393,8 +380,6 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                       ),
                     ))),
           ),
-
-
         ],
       ),
     );
@@ -402,45 +387,40 @@ class _DetailsSummaryState extends State<DetailsSummary> {
 
   void opensheet() async {
     showModalBottomSheet(
-      // isScrollControlled: true,
+        // isScrollControlled: true,
         backgroundColor: Colors.transparent,
         context: (context),
         enableDrag: true,
         // isDismissible: true,
         builder: (context) {
           return Container(
-            height: MediaQuery.of(context).size.height/2,
+            height: MediaQuery.of(context).size.height / 2,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(30),
                 topLeft: Radius.circular(30),
               ),
-
-
-
               color: Colors.white,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 30),
               child: Column(
                 children: [
-
                   Container(
-                    width: MediaQuery.of(context).size.width/1.2,
+                    width: MediaQuery.of(context).size.width / 1.2,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap:(){
-                              setState(() => _controller.clear());
+                          onTap: () {
+                            setState(() => _controller.clear());
                           },
                           child: Text(
                             "Clear",
                             style: TextStyle(
                                 color: basicColor,
                                 fontSize: 14.0,
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         Text(
@@ -448,66 +428,61 @@ class _DetailsSummaryState extends State<DetailsSummary> {
                           style: TextStyle(
                               color: basicColor,
                               fontSize: 18.0,
-                              fontWeight: FontWeight.bold
-                          ),
+                              fontWeight: FontWeight.bold),
                         ),
                         InkWell(
-
-                          onTap:  () {
+                          onTap: () {
                             setState(() async {
                               mysignat = await _controller.toPngBytes();
                               Navigator.pop(context);
                             });
-
                           },
                           child: Text(
                             "close",
                             style: TextStyle(
                                 color: basicColor,
                                 fontSize: 14.0,
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox (height: 10,),
-
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
-                    width: MediaQuery.of(context).size.width/1.3,
+                    width: MediaQuery.of(context).size.width / 1.3,
                     child: Text(
                       "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate.",
                       style: TextStyle(
                           color: mainTextColor,
                           fontSize: 10.0,
-                          fontWeight: FontWeight.w600
-                      ),
+                          fontWeight: FontWeight.w600),
                       textAlign: TextAlign.center,
                     ),
                   ),
-
-                  SizedBox (height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   Container(
-                    width: MediaQuery.of(context).size.width/1.2,
-                    height: MediaQuery.of(context).size.height/4,
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    height: MediaQuery.of(context).size.height / 4,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black.withOpacity(0.1)),
-                      borderRadius: BorderRadius.circular(12)
-                    ),
+                        border:
+                            Border.all(color: Colors.black.withOpacity(0.1)),
+                        borderRadius: BorderRadius.circular(12)),
                     child: Signature(
-                      width: MediaQuery.of(context).size.width/1.3,
+                      width: MediaQuery.of(context).size.width / 1.3,
                       controller: _controller,
                       height: 250,
                       backgroundColor: Colors.white,
                     ),
                   ),
-
                 ],
               ),
             ),
           );
         });
   }
-
 }

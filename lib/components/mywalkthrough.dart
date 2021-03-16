@@ -6,11 +6,11 @@ class myWalkthrough extends StatefulWidget {
   String content;
   String image;
 
-
-  myWalkthrough(
-      {this.title,
-        this.content,
-        this.image,});
+  myWalkthrough({
+    this.title,
+    this.content,
+    this.image,
+  });
 
   @override
   WalkthroughState createState() {
@@ -59,21 +59,19 @@ class WalkthroughState extends State<myWalkthrough>
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
             Transform(
-              transform:
-              new Matrix4.translationValues(0, 2.0, 6.0),
+              transform: new Matrix4.translationValues(0, 2.0, 6.0),
               child: new Image(
                 image: AssetImage(widget.image),
-                height: MediaQuery.of(context).size.height/4,
+                height: MediaQuery.of(context).size.height / 4,
               ),
             ),
-
-            SizedBox(height: 30,),
-
+            SizedBox(
+              height: 10,
+            ),
             new Transform(
               transform:
-              new Matrix4.translationValues(animation.value, 0.0, 0.0),
+                  new Matrix4.translationValues(animation.value, 0.0, 0.0),
               child: new Text(
                 widget.title,
                 style: new TextStyle(
@@ -84,11 +82,12 @@ class WalkthroughState extends State<myWalkthrough>
                 textAlign: TextAlign.center,
               ),
             ),
-
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
             new Transform(
               transform:
-              new Matrix4.translationValues(animation.value, 0.0, 0.0),
+                  new Matrix4.translationValues(animation.value, 0.0, 0.0),
               child: new Text(widget.content,
                   softWrap: true,
                   textAlign: TextAlign.center,
@@ -98,7 +97,6 @@ class WalkthroughState extends State<myWalkthrough>
                       fontSize: 15.0,
                       color: Colors.grey)),
             ),
-
           ],
         ),
       ),

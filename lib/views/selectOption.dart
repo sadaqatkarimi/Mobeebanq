@@ -11,14 +11,10 @@ class selectOption extends StatefulWidget {
 }
 
 class _selectOptionState extends State<selectOption> {
-
-
   @override
   void initState() {
     super.initState();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +30,19 @@ class _selectOptionState extends State<selectOption> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               RaisedButton(
-                onPressed: (){
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (Context) => paymentHistory()));
-              },
-              child: Text("Payment History"),),
-
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (Context) => paymentHistory()));
+                },
+                child: Text("Payment History"),
+              ),
               RaisedButton(
-                onPressed: (){
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (Context) => mapView()));
-              },
-              child: Text("Map view"),),
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (Context) => mapView()));
+                },
+                child: Text("Map view"),
+              ),
             ],
           ),
         ),

@@ -30,23 +30,23 @@ class myCircleMenu extends StatefulWidget {
 
   myCircleMenu(
       {Key key,
-        this.alignment = Alignment.bottomRight,
-        this.ringColor,
-        this.ringDiameter,
-        this.ringWidth,
-        this.fabSize = 64.0,
-        this.fabElevation = 8.0,
-        this.fabColor,
-        this.fabOpenColor,
-        this.fabCloseColor,
-        this.fabIconBorder,
-        this.fabOpenIcon = const Icon(Icons.menu),
-        this.fabCloseIcon = const Icon(Icons.close),
-        this.fabMargin = const EdgeInsets.all(16.0),
-        this.animationDuration = const Duration(milliseconds: 800),
-        this.animationCurve = Curves.easeInOutCirc,
-        this.onDisplayChange,
-        @required this.children})
+      this.alignment = Alignment.bottomRight,
+      this.ringColor,
+      this.ringDiameter,
+      this.ringWidth,
+      this.fabSize = 64.0,
+      this.fabElevation = 8.0,
+      this.fabColor,
+      this.fabOpenColor,
+      this.fabCloseColor,
+      this.fabIconBorder,
+      this.fabOpenIcon = const Icon(Icons.menu),
+      this.fabCloseIcon = const Icon(Icons.close),
+      this.fabMargin = const EdgeInsets.all(16.0),
+      this.animationDuration = const Duration(milliseconds: 800),
+      this.animationCurve = Curves.easeInOutCirc,
+      this.onDisplayChange,
+      @required this.children})
       : assert(children != null),
         assert(children.length >= 2),
         super(key: key);
@@ -120,6 +120,7 @@ class myCircleMenuState extends State<myCircleMenu>
     super.didChangeDependencies();
     _calculateProps();
   }
+
   int lastAnimPosition = 2;
 
   AnimationController animation;
@@ -141,8 +142,8 @@ class myCircleMenuState extends State<myCircleMenu>
           // Ring
           Transform(
             transform:
-            Matrix4.translationValues(_translationX, _translationY, .0)
-              ..scale(_scaleAnimation.value),
+                Matrix4.translationValues(_translationX, _translationY, .0)
+                  ..scale(_scaleAnimation.value),
             alignment: FractionalOffset.center,
             child: OverflowBox(
               maxWidth: _ringDiameter,
@@ -152,41 +153,44 @@ class myCircleMenuState extends State<myCircleMenu>
                 height: _ringDiameter,
                 child: _scaleAnimation.value == 1.0
                     ? Transform.rotate(
-                  angle: (1.7 * pi) *
-                      _rotateAnimation.value *
-                      _directionX *
-                      _directionY,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      ArcChooser()
-                        ..arcSelectedCallback = (int pos, ArcItem item) {
-                          int animPosition = pos - 2;
-                          if (animPosition > 3) {
-                            animPosition = animPosition - 4;
-                          }
+                        angle: (1.7 * pi) *
+                            _rotateAnimation.value *
+                            _directionX *
+                            _directionY,
+                        child: Stack(
+                            alignment: Alignment.center,
+                            children: <Widget>[
+                              ArcChooser()
+                                ..arcSelectedCallback =
+                                    (int pos, ArcItem item) {
+                                  int animPosition = pos - 2;
+                                  if (animPosition > 3) {
+                                    animPosition = animPosition - 4;
+                                  }
 
-                          if (animPosition < 0) {
-                            animPosition = 4 + animPosition;
-                          }
+                                  if (animPosition < 0) {
+                                    animPosition = 4 + animPosition;
+                                  }
 
-                          if (lastAnimPosition == 3 && animPosition == 0) {
-                            animation.animateTo(4 * 100.0);
-                          } else if (lastAnimPosition == 0 && animPosition == 3) {
-                            animation.forward(from: 4 * 100.0);
-                            animation.animateTo(animPosition * 100.0);
-                          } else if (lastAnimPosition == 0 && animPosition == 1) {
-                            animation.forward(from: 0.0);
-                            animation.animateTo(animPosition * 100.0);
-                          } else {
-                            animation.animateTo(animPosition * 100.0);
-                          }
+                                  if (lastAnimPosition == 3 &&
+                                      animPosition == 0) {
+                                    animation.animateTo(4 * 100.0);
+                                  } else if (lastAnimPosition == 0 &&
+                                      animPosition == 3) {
+                                    animation.forward(from: 4 * 100.0);
+                                    animation.animateTo(animPosition * 100.0);
+                                  } else if (lastAnimPosition == 0 &&
+                                      animPosition == 1) {
+                                    animation.forward(from: 0.0);
+                                    animation.animateTo(animPosition * 100.0);
+                                  } else {
+                                    animation.animateTo(animPosition * 100.0);
+                                  }
 
-                          lastAnimPosition = animPosition;
-                        },
-                    ]
-                  ),
-                )
+                                  lastAnimPosition = animPosition;
+                                },
+                            ]),
+                      )
                     : Container(),
               ),
             ),
@@ -199,7 +203,6 @@ class myCircleMenuState extends State<myCircleMenu>
             child: Container(
               width: widget.fabSize,
               height: widget.fabSize,
-
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 // borderRadius: BorderRadius.circular(20),
@@ -213,9 +216,6 @@ class myCircleMenuState extends State<myCircleMenu>
                   ),
                 ],
               ),
-
-
-
               child: RawMaterialButton(
                 fillColor: _colorAnimation.value,
                 shape: _fabIconBorder,
@@ -285,8 +285,8 @@ class myCircleMenuState extends State<myCircleMenu>
     _directionY = widget.alignment.y == 0 ? 1 : 1 * widget.alignment.y.sign;
     _translationX =
         ((_screenWidth - widget.fabSize) / 3.3 - _marginH) * widget.alignment.x;
-    _translationY =
-        ((_screenHeight - widget.fabSize) / 2.8 - _marginV) * widget.alignment.y;
+    _translationY = ((_screenHeight - widget.fabSize) / 2.8 - _marginV) *
+        widget.alignment.y;
 
     if (_colorAnimation == null || !kReleaseMode) {
       _colorCurve = CurvedAnimation(
@@ -294,9 +294,9 @@ class myCircleMenuState extends State<myCircleMenu>
           curve: Interval(0.0, 0.4, curve: widget.animationCurve));
       _colorAnimation = ColorTween(begin: _fabCloseColor, end: _fabOpenColor)
           .animate(_colorCurve)
-        ..addListener(() {
-          setState(() {});
-        });
+            ..addListener(() {
+              setState(() {});
+            });
     }
   }
 
@@ -352,8 +352,8 @@ class myCircleMenuState extends State<myCircleMenu>
 // }
 
 typedef void ArcSelectedCallback(int position, ArcItem arcitem);
-class ArcChooser extends StatefulWidget {
 
+class ArcChooser extends StatefulWidget {
   ArcSelectedCallback arcSelectedCallback;
 
   @override
@@ -362,7 +362,8 @@ class ArcChooser extends StatefulWidget {
   }
 }
 
-class ChooserState extends State<ArcChooser> with SingleTickerProviderStateMixin {
+class ChooserState extends State<ArcChooser>
+    with SingleTickerProviderStateMixin {
   var slideValue = 200;
   Offset centerPoint;
 
@@ -375,7 +376,7 @@ class ChooserState extends State<ArcChooser> with SingleTickerProviderStateMixin
   static double angle = 45.0;
 
   static double angleInRadians = degreeToRadians(angle);
-  static double angleInRadiansByTwo = angleInRadians/2;
+  static double angleInRadiansByTwo = angleInRadians / 2;
   static double centerItemAngle = degreeToRadians(center - (angle / 2));
   List<ArcItem> arcItems;
 
@@ -390,7 +391,7 @@ class ChooserState extends State<ArcChooser> with SingleTickerProviderStateMixin
 
   ArcSelectedCallback arcSelectedCallback;
 
-  ChooserState(ArcSelectedCallback arcSelectedCallback){
+  ChooserState(ArcSelectedCallback arcSelectedCallback) {
     this.arcSelectedCallback = arcSelectedCallback;
   }
 
@@ -399,31 +400,33 @@ class ChooserState extends State<ArcChooser> with SingleTickerProviderStateMixin
   }
 
   static double radianToDegrees(double radian) {
-    return radian * (180 / pi );
+    return radian * (180 / pi);
   }
 
   @override
   void initState() {
     arcItems = List<ArcItem>();
 
-
-    arcItems.add(ArcItem(Icons.ac_unit, [basicColor,basicColor],
+    arcItems.add(ArcItem(Icons.ac_unit, [basicColor, basicColor],
         angleInRadiansByTwo + userAngle));
-    arcItems.add(ArcItem(Icons.airline_seat_individual_suite_sharp, [yelowColor,yelowColor],
+    arcItems.add(ArcItem(
+        Icons.airline_seat_individual_suite_sharp,
+        [yelowColor, yelowColor],
         angleInRadiansByTwo + userAngle + (angleInRadians)));
-    arcItems.add(ArcItem(Icons.bathtub_sharp, [basicColor,basicColor],
+    arcItems.add(ArcItem(Icons.bathtub_sharp, [basicColor, basicColor],
         angleInRadiansByTwo + userAngle + (2 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.accessible_forward_sharp, [yelowColor,yelowColor],
+    arcItems.add(ArcItem(
+        Icons.accessible_forward_sharp,
+        [yelowColor, yelowColor],
         angleInRadiansByTwo + userAngle + (3 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.ac_unit, [basicColor,basicColor],
+    arcItems.add(ArcItem(Icons.ac_unit, [basicColor, basicColor],
         angleInRadiansByTwo + userAngle + (4 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.ac_unit, [yelowColor,yelowColor],
+    arcItems.add(ArcItem(Icons.ac_unit, [yelowColor, yelowColor],
         angleInRadiansByTwo + userAngle + (5 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.ac_unit, [basicColor,basicColor],
+    arcItems.add(ArcItem(Icons.ac_unit, [basicColor, basicColor],
         angleInRadiansByTwo + userAngle + (6 * angleInRadians)));
-    arcItems.add(ArcItem(Icons.ac_unit, [yelowColor,yelowColor],
+    arcItems.add(ArcItem(Icons.ac_unit, [yelowColor, yelowColor],
         angleInRadiansByTwo + userAngle + (7 * angleInRadians)));
-
 
     animation = new AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
@@ -431,8 +434,8 @@ class ChooserState extends State<ArcChooser> with SingleTickerProviderStateMixin
       userAngle = lerpDouble(animationStart, animationEnd, animation.value);
       setState(() {
         for (int i = 0; i < arcItems.length; i++) {
-          arcItems[i].startAngle = angleInRadiansByTwo + userAngle +
-              (i * angleInRadians);
+          arcItems[i].startAngle =
+              angleInRadiansByTwo + userAngle + (i * angleInRadians);
         }
       });
     });
@@ -472,29 +475,32 @@ class ChooserState extends State<ArcChooser> with SingleTickerProviderStateMixin
         });
         startAngle = freshAngle;
       },
-      onPanEnd: (DragEndDetails details){
-
+      onPanEnd: (DragEndDetails details) {
         //find top arc item with Magic!!
-        bool rightToLeft = startingPoint.dx<endingPoint.dx;
+        bool rightToLeft = startingPoint.dx < endingPoint.dx;
 
 //        Animate it from this values
         animationStart = userAngle;
-        if(rightToLeft) {
-          animationEnd +=angleInRadians;
+        if (rightToLeft) {
+          animationEnd += angleInRadians;
           currentPosition--;
-          if(currentPosition<0){
-            currentPosition = arcItems.length-1;
+          if (currentPosition < 0) {
+            currentPosition = arcItems.length - 1;
           }
-        }else{
-          animationEnd -=angleInRadians;
+        } else {
+          animationEnd -= angleInRadians;
           currentPosition++;
-          if(currentPosition>=arcItems.length){
+          if (currentPosition >= arcItems.length) {
             currentPosition = 0;
           }
         }
 
-        if(arcSelectedCallback!=null){
-          arcSelectedCallback(currentPosition, arcItems[(currentPosition>=(arcItems.length-1))?0:currentPosition+1]);
+        if (arcSelectedCallback != null) {
+          arcSelectedCallback(
+              currentPosition,
+              arcItems[(currentPosition >= (arcItems.length - 1))
+                  ? 0
+                  : currentPosition + 1]);
         }
 
         animation.forward(from: 0.0);
@@ -506,6 +512,4 @@ class ChooserState extends State<ArcChooser> with SingleTickerProviderStateMixin
       ),
     );
   }
-
 }
-
