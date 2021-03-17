@@ -39,8 +39,8 @@ class _paymentHistoryState extends State<paymentHistory>
     _animateIcon =
         Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _animateColor = ColorTween(
-      begin: Colors.blue,
-      end: Colors.red,
+      begin: yelowColor,
+      end: basicColor,
     ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Interval(
@@ -112,30 +112,44 @@ class _paymentHistoryState extends State<paymentHistory>
             ),
           ),
           Positioned(
-              top: height - 100,
-              left: width - 80,
-              child: FloatingActionButton(
-                backgroundColor: _animateColor.value,
-                onPressed: animate,
-                tooltip: 'Toggle',
-                child: AnimatedIcon(
-                  icon: AnimatedIcons.menu_close,
-                  progress: _animateIcon,
-                ),
-              )),
+            top: height - 125,
+            left: width - 100,
+            child: MaterialButton(
+              height: 120,
+              minWidth: 120,
+              color: _animateColor.value,
+              onPressed: animate,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(60)),
+              child: AnimatedIcon(
+                color: Colors.white,
+                icon: AnimatedIcons.menu_close,
+                progress: _animateIcon,
+              ),
+            ),
+          )
         ],
       ),
     ));
   }
 
+// FloatingActionButton(
+//                 backgroundColor: _animateColor.value,
+//                 onPressed: animate,
+//                 tooltip: 'Toggle',
+//                 child: AnimatedIcon(
+//                   icon: AnimatedIcons.menu_close,
+//                   progress: _animateIcon,
+//                 ),
+//               )
   NewSpinningWheel buildNewSpinningWheel() {
     return NewSpinningWheel(
       height: 400,
       width: 400,
       initialSpinAngle: 1,
-      spinResistance: 0.1,
+      spinResistance: 0.9,
       canInteractWhileSpinning: false,
-      dividers: 10,
+      dividers: 5,
       onUpdate: _dividerController.add,
       onEnd: _dividerController.add,
       secondaryImageHeight: 40,

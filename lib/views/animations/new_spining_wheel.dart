@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import '../../constants.dart';
 import 'spining_utils.dart';
 
 /// Returns a widget which displays a rotating image.
@@ -195,7 +196,7 @@ class _NewSpinningWheelState extends State<NewSpinningWheel>
             onPanDown: (_details) => _stopAnimation(),
             child: AnimatedBuilder(
                 animation: _animation,
-                child: Container(child: ExampleWidget()),
+                child: Container(child: CircleWidget()),
                 builder: (context, child) {
                   _updateAnimationValues();
                   widget.onUpdate(_currentDivider);
@@ -320,16 +321,16 @@ class _NewSpinningWheelState extends State<NewSpinningWheel>
   }
 }
 
-class ExampleWidget extends StatelessWidget {
+class CircleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget bigCircle = Container(
       width: 300.0,
       height: 300.0,
       decoration: BoxDecoration(
-        color: Colors.transparent,
+        color: yelowColor,
         // shape: BoxShape.circle,
-        border: Border.all(width: 50.0, color: Colors.green),
+        border: Border.all(color: Colors.green),
         borderRadius: BorderRadius.all(
             Radius.circular(160.0) //                 <--- border radius here
             ),
@@ -345,38 +346,38 @@ class ExampleWidget extends StatelessWidget {
             Positioned(
               child: CircleButton(
                   onTap: () => print("Cool"), iconData: Icons.favorite_border),
-              top: 10.0,
-              left: 90.0,
+              top: 30.0,
+              left: 190.0,
             ),
             Positioned(
               child: CircleButton(
-                  onTap: () => print("Cool"), iconData: Icons.timer),
-              top: 100.0,
-              left: 10.0,
+                  onTap: () => print("Cool"), iconData: Icons.merge_type),
+              top: 10.0,
+              left: 130.0,
             ),
             Positioned(
               child: CircleButton(
                   onTap: () => print("Cool"), iconData: Icons.place),
-              top: 90.0,
-              right: 10.0,
+              top: 30.0,
+              left: 70.0,
             ),
             Positioned(
               child: CircleButton(
-                  onTap: () => print("Cool"), iconData: Icons.local_pizza),
-              top: 170.0,
+                  onTap: () => print("Cool"), iconData: Icons.clean_hands),
+              top: 80.0,
+              left: 30.0,
+            ),
+            Positioned(
+              child: CircleButton(
+                  onTap: () => print("Cool"), iconData: Icons.date_range),
+              top: 140.0,
               left: 20.0,
             ),
             Positioned(
               child: CircleButton(
-                  onTap: () => print("Cool"), iconData: Icons.local_pizza),
-              top: 230.0,
-              left: 60.0,
-            ),
-            Positioned(
-              child: CircleButton(
-                  onTap: () => print("Cool"), iconData: Icons.local_pizza),
-              top: 230.0,
-              left: 200.0,
+                  onTap: () => print("Cool"), iconData: Icons.menu_book),
+              top: 80.0,
+              left: 230.0,
             ),
           ],
         ),
@@ -401,12 +402,12 @@ class CircleButton extends StatelessWidget {
         width: size,
         height: size,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: basicColor,
           shape: BoxShape.circle,
         ),
         child: Icon(
           iconData,
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
     );
