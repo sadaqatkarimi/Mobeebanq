@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:mobeebanq/circle_menu/circle_menu.dart';
+import 'package:mobeebanq/circle_menu/menu_controller.dart';
 
 import 'package:mobeebanq/components/customWidgtes.dart';
 import 'package:mobeebanq/constants.dart';
@@ -16,50 +18,38 @@ class paymentHistory extends StatefulWidget {
 
 class _paymentHistoryState extends State<paymentHistory>
     with SingleTickerProviderStateMixin {
-  bool isOpened = false;
-  AnimationController _animationController;
-  Animation<Color> _animateColor;
-  Animation<double> _animateIcon;
-  Curve _curve = Curves.easeOut;
+  final icons = [
+    Icons.ac_unit,
+    Icons.face,
+    Icons.dangerous,
+    Icons.verified,
+    Icons.radio,
+    Icons.sanitizer,
+    Icons.cached,
+    Icons.g_translate,
+    Icons.ac_unit,
+    Icons.face,
+    Icons.dangerous,
+    Icons.verified,
+    Icons.radio,
+    Icons.sanitizer,
+    Icons.cached,
+    Icons.g_translate
+  ];
+  final _menuController = MenuController();
+  bool _isVisible = false;
+  var selectedIndex = 0;
 
-  int currentIndex;
-
-  Color mycolor;
-  final StreamController _dividerController = StreamController<int>();
-
-  bool _visible = false;
-
-  @override
-  initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
-          ..addListener(() {
-            setState(() {});
-          });
-    _animateIcon =
-        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
-    _animateColor = ColorTween(
-      begin: yelowColor,
-      end: basicColor,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Interval(
-        0.00,
-        1.00,
-        curve: _curve,
-      ),
-    ));
-    super.initState();
+  void _changeMenuState() {
+    _isVisible = !_isVisible;
+    setState(() {});
+    _menuController.changeState(_isVisible);
   }
 
-  animate() {
-    if (!isOpened) {
-      _animationController.forward();
-    } else {
-      _animationController.reverse();
-    }
-    isOpened = !isOpened;
-    _visible = !_visible;
+  @override
+  void dispose() {
+    _menuController.close();
+    super.dispose();
   }
 
   @override
@@ -75,61 +65,59 @@ class _paymentHistoryState extends State<paymentHistory>
           // color: Colors.white,
           width: SizeConfig.screenWidth,
           height: double.infinity,
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              SizedBox(
-                height: 10,
+              ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                // mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  paymentHeader(),
+
+                  // Divider(height: 20,color: Colors.white,),
+
+                  myBarChart(),
+
+                  pyamentBody(),
+
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
-              paymentHeader(),
-
-              // Divider(height: 20,color: Colors.white,),
-
-              myBarChart(),
-
-              pyamentBody(),
-
-              SizedBox(
-                height: 10,
-              ),
+              StreamBuilder<bool>(
+                  initialData: false,
+                  stream: _menuController.stream,
+                  builder: (context, snapshot) {
+                    return Align(
+                      alignment: Alignment.bottomCenter,
+                      child: AnimatedContainer(
+                          duration: Duration(milliseconds: 700),
+                          height: snapshot.data ? 350 : 0,
+                          child: CircleMenu(
+                            icons: icons,
+                            onItemClicked: (menuItem, index) {
+                              selectedIndex = index;
+                              _changeMenuState();
+                            },
+                          )),
+                    );
+                  })
             ],
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: Stack(
-        children: [
-          Positioned(
-            top: height - 270,
-            left: width - 230,
-            child: AnimatedOpacity(
-              opacity: _visible ? 1.0 : 0.0,
-              duration: Duration(milliseconds: 900),
-              child: buildNewSpinningWheel(),
-            ),
-          ),
-          Positioned(
-            top: height - 125,
-            left: width - 100,
-            child: MaterialButton(
-              height: 120,
-              minWidth: 120,
-              color: _animateColor.value,
-              onPressed: animate,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(60)),
-              child: AnimatedIcon(
-                color: Colors.white,
-                icon: AnimatedIcons.menu_close,
-                progress: _animateIcon,
-              ),
-            ),
-          )
-        ],
-      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _changeMenuState();
+          },
+          backgroundColor: _isVisible ? basicColor : yelowColor,
+          child: Icon(_isVisible ? Icons.close : Icons.menu)),
     ));
   }
 
@@ -141,21 +129,55 @@ class _paymentHistoryState extends State<paymentHistory>
 //                   icon: AnimatedIcons.menu_close,
 //                   progress: _animateIcon,
 //                 ),
-//               )
-  NewSpinningWheel buildNewSpinningWheel() {
-    return NewSpinningWheel(
-      height: 400,
-      width: 400,
-      initialSpinAngle: 1,
-      spinResistance: 0.9,
-      canInteractWhileSpinning: false,
-      dividers: 5,
-      onUpdate: _dividerController.add,
-      onEnd: _dividerController.add,
-      secondaryImageHeight: 40,
-      secondaryImageWidth: 40,
-    );
-  }
+// Stack(
+  //   children: [
+  //     Positioned(
+  //       top: height - 270,
+  //       left: width - 230,
+  //       child: AnimatedOpacity(
+  //         opacity: _visible ? 1.0 : 0.0,
+  //         duration: Duration(milliseconds: 900),
+  //         child: buildNewSpinningWheel(),
+  //       ),
+  //     ),
+  //     Positioned(
+  //       top: height - 125,
+  //       left: width - 100,
+  //       child: MaterialButton(
+  //         height: 120,
+  //         minWidth: 120,
+  //         color: _animateColor.value,
+  //         onPressed: animate,
+  //         shape: RoundedRectangleBorder(
+  //             borderRadius: BorderRadius.circular(60)),
+  //         child: AnimatedIcon(
+  //           color: Colors.white,
+  //           icon: AnimatedIcons.menu_close,
+  //           progress: _animateIcon,
+  //         ),
+  //       ),
+  //     )
+  //   ],
+  // ),              )
+//
+//
+//
+//
+//
+  // NewSpinningWheel buildNewSpinningWheel() {
+  //   return NewSpinningWheel(
+  //     height: 400,
+  //     width: 400,
+  //     initialSpinAngle: 1,
+  //     spinResistance: 0.9,
+  //     canInteractWhileSpinning: false,
+  //     dividers: 5,
+  //     onUpdate: _dividerController.add,
+  //     onEnd: _dividerController.add,
+  //     secondaryImageHeight: 40,
+  //     secondaryImageWidth: 40,
+  //   );
+  // }
 
   Builder fabOneButton() {
     return Builder(

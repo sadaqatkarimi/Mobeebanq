@@ -12,7 +12,7 @@ var routes = <String, WidgetBuilder>{
   "/walkthrough": (BuildContext context) => WalkThrough(),
   "/phoneVerify": (BuildContext context) => phoneVerification(),
 };
-
+ 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
